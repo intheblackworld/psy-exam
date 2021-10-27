@@ -406,8 +406,8 @@ body {
 @media screen and (max-width: 767px) {
   .content {
     width: 100vw;
-    height: 90%;
-    top: 10%;
+    height: 90% !important;
+    top: 10% !important;
     transform: none;
     padding: 16px;
   }
