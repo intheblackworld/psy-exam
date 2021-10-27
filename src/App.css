@@ -132,7 +132,8 @@ body {
 .content {
   position: absolute;
   width: 50vw;
-  height: 100vh;
+  height: 90vh;
+  top: 10vh;
   z-index: 1;
   left: 0;
   right: 0;
@@ -256,6 +257,11 @@ body {
   text-decoration: none;
 }
 
+.btn-submit img {
+  width: 20px;
+  margin-right: 5px;
+}
+
 .btn-submit.gray {
   background: #999;
 }
@@ -323,8 +329,14 @@ body {
 .logo {
   width: 200px;
   position: absolute;
+  z-index: 10;
   top: 15px;
-  left: 0;
+  left: 15px;
+  cursor: pointer;
+}
+
+.logo img {
+  width: 100%;
 }
 
 .result-title {
@@ -394,8 +406,8 @@ body {
 @media screen and (max-width: 767px) {
   .content {
     width: 100vw;
-    height: 100%;
-    top: 0;
+    height: 90%;
+    top: 10%;
     transform: none;
     padding: 16px;
   }
@@ -413,6 +425,7 @@ body {
   }
   .question-title {
     font-size: calc(100vw * 24 / 375);
+    margin-top: 0;
   }
   .ans-title {
     font-size: calc(100vw * 18 / 375);
@@ -423,10 +436,9 @@ body {
   }
 
   .logo {
-    width: 120px;
-    left: auto;
-    right: 12px;
-    top: 0;
+    width: 160px;
+    left: 16px;
+    top: 5px;
   }
 
   .result-title {
@@ -460,6 +472,6 @@ body {
     width: calc(100vw * 120 / 375);
     height: calc(100vw * 120 / 375);
     right: 5%;
-    top: 5vh;
+    top: 0;
   }
 }

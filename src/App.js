@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import logo from './imgs/nav-logo.png'
+import lineIcon from './imgs/line-icon.png'
 import Lottie from 'react-lottie'
 // import domtoimage from 'dom-to-image'
 // import html2canvas from 'html2canvas'
@@ -139,7 +140,7 @@ const type_details = {
   intj: {
     name: '系統建造者',
     desc: '具有特殊的特質組合——想像力和務實性。他們尋求以全新的角度或創新的方法來看待事物，對自己的想法和目標非常投入和堅定。在面對相反的意見時，通常持懷疑的態度。他們是所有性格類型中最獨立的。',
-    lead: '臉書創辦人小柏',
+    lead: '臉書創辦人佐克柏，夜神月，柏拉圖，榮格',
     job: '投資銀行家、個人理財顧問、軟體工程師、經濟學家、高階主管',
     keywords: ['投資', '管理課程', '前端', '後端', '程式'],
     type: 'nt',
@@ -147,15 +148,15 @@ const type_details = {
   intp: {
     name: '邏輯學家',
     desc: '喜歡獨自工作，不在意頭銜，屬於安靜、有思想、善於解析的類型。他們傾向獨處，以尋找問題解決的方法。適合從事和科學、建築和法律相關的職業，他們接受一個觀念，是因為其優點，而非傳統或權威。該人格類型約占人口的1.8%。',
-    lead: 'Google共同創始人佩奇和布林',
-    job: '軟體工程師，財務分析師、建築師、大學教授、經濟學家',
+    lead: '愛因斯坦，L，笛卡爾，老子',
+    job: '軟體工程師、財務分析師、建築師、大學教授、經濟學家',
     keywords: ['數據分析', '理財', '經濟', '前端', '後端', '程式'],
     type: 'nt',
   },
   entj: {
     name: '指揮官',
     desc: '非常實際、邏輯性強，善於從事需要推理和用腦的工作，是天生熱心坦誠的領導者。他們能夠快速地看到不合邏輯和低效率的產品和策略，通過建立整合策略來解決組織架構的問題。該人格類型約占人口的1.8%。',
-    lead: '蘋果創辦人喬布斯、特斯拉執行長馬斯克（Elon Musk）',
+    lead: '賈柏斯，馬斯克，柯南，拿破崙',
     job: '高階主管、律師、市場研究分析員、管理與商業顧問、創投者',
     keywords: ['市場', '創業', '管理', '商業', 'PM'],
     type: 'nt',
@@ -163,7 +164,7 @@ const type_details = {
   entp: {
     name: '辯論家',
     desc: '富創新的精神、機智靈敏、喜歡有挑戰性的工作，熱衷與人爭辯，只要認為有意思，一點都不在乎爭論的內容，這類型的人很適合去解決具有挑戰性的問題。',
-    lead: '英國喜劇演員豆豆先生（Rowan Atkinson）',
+    lead: '馬克吐溫，五條悟，小丑，死侍',
     job: '創業家、地產開發商、廣告創意總監、行銷總監、政治家或政治顧問',
     keywords: ['創業', '文案', '行銷', '說話'],
     type: 'nt',
@@ -171,7 +172,7 @@ const type_details = {
   infj: {
     name: '提倡者',
     desc: '有責任心、受價值觀驅使，安靜內斂的人，喜歡在幕後發揮影響力。他們有清晰的洞察力，十分關心別人，是很多不同類型的人口中所謂的「密友」或「知己」。雖然如此，他們可能不很輕易將內在世界和別人分享。',
-    lead: '甘地',
+    lead: '甘地，艾莎公主，李安，宮崎駿',
     job: '治療師或心理諮商師、社工人員、組織多樣化管理經理（HR diversity manager）、組織發展顧問、客戶關係經理',
     keywords: ['心理', '業務', '關係', '溝通'],
     type: 'nf',
@@ -179,7 +180,7 @@ const type_details = {
   infp: {
     name: '調停者',
     desc: '隨和、通情達理，將精力集中於內在世界，但對現實世界充滿強烈的感情以及倫理道德信念，他們希望尋找一個能符合這些價值觀的外在世界。對人和事很忠誠，能迅速發現實現理想的機遇。',
-    lead: '哈利波特系列小說作者JK羅琳',
+    lead: 'JK羅琳，莎士比亞，湯姆希爾頓，基奴李維',
     job: '心理學家或治療師、平面設計師、作家或編輯、物理治療師、人力資源管理訓練師',
     keywords: ['心理', '文案', '關係', '溝通'],
     type: 'nf',
@@ -188,7 +189,7 @@ const type_details = {
   enfj: {
     name: '主人公',
     desc: '溫暖、盡責並積極回應讚揚與批評。喜歡幫助他人，涉及到個人與團隊成長方面，會表現得富有感染力。',
-    lead: '臉書營運長桑德伯格（Sheryl Sandberg）',
+    lead: '歐巴馬，安西教練，臉書營運長桑德伯格，王嘉爾',
     job: '心理學家或治療師、平面設計師、作家或編輯、物理治療師、人力資源管理訓練師',
     keywords: ['關係', '溝通', '公關', '簡報', '業務'],
     type: 'nf',
@@ -196,7 +197,7 @@ const type_details = {
   enfp: {
     name: '競選者',
     desc: '溫暖熱情、富想像力、處事靈活變通。在他們的生活中，充滿着各種可能性。可以在事件與信息之間快速建立聯繫，然後有自信地行動，這類人的即興創作和語言表達能力很強。',
-    lead: '迪士尼創始人華特·迪士尼',
+    lead: '華特·迪士尼，殺老師，劉備，威爾史密斯',
     job: '記者、廣告創意總監、顧問、活動策劃人員、餐館老闆',
     keywords: ['文案', '活動', '社群'],
     type: 'nf',
@@ -205,7 +206,7 @@ const type_details = {
   istj: {
     name: '物流師',
     desc: '嚴肅的態度讓生活和環境井然有序，對細節也一絲不苟。他們為人忠誠、有責任感，是明智的傳統主義者，在高品質的工作尚未結束前是不會休息的。該人格類型約占人口的10－14%。',
-    lead: '巴菲特、亞馬遜創始人貝索斯（Jeff Bezos）',
+    lead: '巴菲特，貝佐斯，七武海甚平，梅克爾',
     job: '會計師、財務長、稽核員、網站開發工程師、公務人員',
     keywords: ['理財', '前端', '後端', '程式'],
     type: 'sj',
@@ -214,7 +215,7 @@ const type_details = {
   isfj: {
     name: '守衛者',
     desc: '致力於生活周遭的和睦，關心照料別人並尊重他人感受，卻不要求其感謝或報償。他們腳踏實地、一絲不苟地處理自己分內的工作，同時以人為本，且觀察力敏鋭。ISFJ是體貼、可信賴的人。',
-    lead: '德蕾莎修女',
+    lead: '德蕾莎修女，黑子，美國隊長',
     job: '牙醫、小學老師、圖書館員、經銷權擁有人、客服專員',
     keywords: ['心理', '關係', '溝通'],
     type: 'sj',
@@ -223,7 +224,7 @@ const type_details = {
   estj: {
     name: '總經理',
     desc: '講求實際、具邏輯性、好分析、處事果斷，具天生企業經營的天份，可承擔責任，並快速做出務實的決定。該人格類型約占人口的8－12%。',
-    lead: '福特汽車創始人福特（Henry Ford）',
+    lead: '亨利福特，希拉蕊，洛克斐勒',
     job: '律師、專案經理、藥劑師、法官、保險員',
     keywords: ['PM', '法律', '思考', '管理'],
     type: 'sj',
@@ -232,7 +233,7 @@ const type_details = {
   esfj: {
     name: '執政官',
     desc: '將注意力放在外部世界，誠摯地關心他人，認真對待自己應盡的責任。他們的決定多基於價值觀以及可能對人造成的影響。他們經常通過改變自己來滿足別人的期望。如果在一個有高道德標準的環境長大，通常會展現出真正的慷慨和善意。',
-    lead: '美國「鋼鐵大王」安德魯·卡內基（Andrew Carnegie）',
+    lead: '卡內基，休·傑克曼',
     job: '業務員、護士或醫療人員、社工人員、公關專員、信貸員',
     keywords: ['心理', '公關', '業務', '溝通', '影響'],
     type: 'sj',
@@ -241,7 +242,7 @@ const type_details = {
   istp: {
     name: '鑑賞家',
     desc: '善於分析問題核心，並能立即完成補救工作。該人格類型適合工程學領域。他們關心具體事物，具有安静、坦率以及誠實的個性。對問題解決的方式充滿自信。該人格類型約占人口的4－10%。',
-    lead: 'Twitter創始人多西（Jack Dorsey）',
+    lead: '喬丹，索隆，湯姆克魯斯',
     job: '土木工程師、經濟學家、飛行員、數據通信分析師、急診部外科醫生',
     keywords: ['經濟', '數據分析', '程式', '前端', '後端', '程式'],
     type: 'sp',
@@ -250,7 +251,7 @@ const type_details = {
   isfp: {
     name: '探險家',
     desc: '具有隨和、體貼和關懷他人的人生態度，討人喜歡，自己卻不喜歡辯論或發表意見，但是他們的價值觀對自己很重要。對環境敏感，可以很清楚察覺夥伴在做什麼，但卻寧可讓他人帶領自己。',
-    lead: '蘋果天才設計師伊夫（Jonathan Ive）',
+    lead: '喬巴，麥克傑克森，張愛玲',
     job: '時尚設計師、物理治療師、按摩治療師、園林建築師、倉庫管理員',
     keywords: ['時尚', '藝術', '旅遊', '溝通', '關係'],
     type: 'sp',
@@ -259,7 +260,7 @@ const type_details = {
   estp: {
     name: '企業家',
     desc: '積極與身邊的人互動，喜愛社交活動，是親身實踐的學習者。是所有類型中最擅長影響他人的人格類型。他們的語言實在、行動功利，是優秀的危機處理者。',
-    lead: '歐洲太平洋資本（Euro Pacific Capital）總裁薛夫（Peter Schiff）',
+    lead: '邱吉爾，川普，安潔莉娜・裘莉',
     job: '偵探、銀行家、投資者、經紀人、運動教練',
     keywords: ['簡報', '社群', '溝通', '關係', '行銷'],
     type: 'sp',
@@ -268,7 +269,7 @@ const type_details = {
   esfp: {
     name: '表演者',
     desc: '追求極致的生活體驗，喜歡物質上的享受，總能以新點子來滿足個人的需求，很少讓傳統阻礙自己的決定。他們是優秀的團隊成員，觀察力敏鋭、實際，通常是根據自己的標準來做決定。',
-    lead: '英國維珍集團創辦人布蘭森（Richard Branson）、甲骨文創始人埃里森（Larry Ellison）',
+    lead: '克林頓，鳴人，李奧納多',
     job: '兒童福利顧問、主治醫生、演員、室內設計師、環境設計師',
     keywords: ['旅遊', '文案', '行銷'],
     type: 'sp',
@@ -321,14 +322,14 @@ function App() {
     setType('')
   }
 
-  const shareLink = async () => {
+  const shareLink = async (result) => {
     if (navigator.share) {
       try {
         await navigator
           .share({
             title: 'Howcobe',
             text: 'Howcobe 心理測驗 幫助你挑選適合的課程',
-            url: window.location.href
+            url: `${window.location.href}?type=${result}`
           })
           .then(() =>
             console.log("Hooray! Your content was shared to tha world")
@@ -339,10 +340,32 @@ function App() {
     } else {
       // fallback code
       window.alert(
-        "Web share is currently not supported on this browser. Please provide a callback"
+        "此瀏覽器不支持分享功能，請使用手機或以複製網址的方式分享"
       )
     }
   }
+
+  useEffect(() => {
+    // 使用瀏覽器 API 更新文件標題
+    const params = (new URL(document.location)).searchParams;
+    const type = params.get("type");
+    const typeResult = type_details[type]
+    if (typeResult) {
+      setPage(5)
+      let typeDigits = type.split('')
+      setFirst(typeDigits[0])
+      setSecond(typeDigits[1])
+      setThird(typeDigits[2])
+      setForth(typeDigits[3])
+      setResult(typeResult)
+      setResult(typeResult)
+      setType(typeResult.type)
+      setAvatar(typeResult)
+    }
+    console.log(window.location)
+
+    // document.title = `You clicked ${count} times`;
+  }, []);
 
   // const shareIG = async () => {
   //   try {
@@ -401,6 +424,9 @@ function App() {
 
   return (
     <div className={`screen page-${page} ${type}`}>
+      <a href="https://howcobe.com" target="_blank" className="logo">
+        <img src={logo} alt="logo" />
+      </a>
       <div className="content">
         {page < 4 && <div className="brand-title">Howcobe 心理測驗</div>}
         {page < 4 && <div className="brand-desc">在自我學習這塊領域中，幫助你找到想要的課程</div>}
@@ -429,7 +455,6 @@ function App() {
         {
           result &&
           <div className="result">
-            <img src={logo} className="logo" alt="logo" />
             <div className="result-title">
               你是
             </div>
@@ -470,9 +495,12 @@ function App() {
             </div>
             <br />
             <div className="btns">
-              <a className="btn-submit blue" href="https://lin.ee/mghSNDp?type=enfj">推薦課程</a>
+              <a className="btn-submit blue" rel="noreferrer" target="_blank" href="https://lin.ee/mghSNDp">
+              <img src={lineIcon} alt="line" />
+                推薦課程
+              </a>
               {/* <div className="btn-submit purple" onClick={shareIG}>分享IG</div> */}
-              <div className="btn-submit green" onClick={shareLink}>分享鏈結</div>
+              <div className="btn-submit green" onClick={() => shareLink(first + second + third + forth)}>分享鏈結</div>
               <div className="btn-submit gray" onClick={reset}>重做測驗</div>
             </div>
           </div>
